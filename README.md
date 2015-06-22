@@ -1,14 +1,16 @@
 # ngrok
 
+[![](https://badge.imagelayers.io/wernight/ngrok.svg)](https://imagelayers.io/?images=wernight/ngrok:latest 'Get your own badge on imagelayers.io')
+
 A [Docker][docker] image for [ngrok][ngrok] v2, introspected tunnels to localhost.
 It's based on the excellent work of [wizardapps/ngrok][wizardapps/ngrok] and [fnichol/ngrok][fnichol/ngrok].
 
 
 ## Features
 
-  * Small: Built using [busybox][busybox].
-  * Safe: Runs as non-root user with a random UID `6737` (to avoid mapping to an existing UID).
-  * Simple: Just link as `http` or `https` in most cases, see below; exposes ngrok server 4040 port.
+  * **Small**: Built using [busybox][busybox].
+  * **Safe**: Runs as non-root user with a random UID `6737` (to avoid mapping to an existing UID).
+  * **Simple**: Just link as `http` or `https` in most cases, see below; exposes ngrok server `4040` port.
 
 
 ## Configuration
@@ -17,12 +19,12 @@ You simply have to link the Ngrok container to the application under the `app` o
 
 Additionally, you can specify one of several environment variable (via `-e`) to configure your Ngrok tunnel:
 
-  * `NGROK_AUTH` - Authentication key for your Ngrok account. This is needed for custom subdomains, custom domains, and HTTP authentication
-  * `NGROK_SUBDOMAIN` - Name of the custom subdomain to use for your tunnel. You must also provide the authentication token
+  * `NGROK_AUTH` - Authentication key for your Ngrok account. This is needed for custom subdomains, custom domains, and HTTP authentication.
+  * `NGROK_SUBDOMAIN` - Name of the custom subdomain to use for your tunnel. You must also provide the authentication token.
   * `NGROK_DOMAIN` - Paying Ngrok customers can specify a custom domain. Only one subdomain or domain can be specified, with the domain taking priority.
-  * `NGROK_USERNAME` - Username to use for HTTP authentication on the tunnel. You must also specify an authentication token
-  * `NGROK_PASSWORD` - Password to use for HTTP authentication on the tunnel. You must also specify an authentication token
-  * `NGROK_PROTOCOL` - Can either be “HTTP” or “TCP”, and it defaults to “HTTP” if not specified. If set to “TCP”, Ngrok will allocate a port instead of a subdomain and proxy TCP requests directly to your application.
+  * `NGROK_USERNAME` - Username to use for HTTP authentication on the tunnel. You must also specify an authentication token.
+  * `NGROK_PASSWORD` - Password to use for HTTP authentication on the tunnel. You must also specify an authentication token.
+  * `NGROK_PROTOCOL` - Can either be `HTTP` or `TCP`, and it defaults to `HTTP` if not specified. If set to `TCP`, Ngrok will allocate a port instead of a subdomain and proxy TCP requests directly to your application.
 
 To see command-line options, run `docker run --rm wernight/ngrok --help`.
 
@@ -52,7 +54,7 @@ To see command-line options, run `docker run --rm wernight/ngrok --help`.
 
 ## Feedbacks
 
-Report issues/questions/feature requests on [GitHub Issues][issues]
+Report issues/questions/feature requests on [GitHub Issues][issues].
 
 Pull requests are very welcome!
 
