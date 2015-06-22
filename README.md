@@ -1,1 +1,65 @@
-# docker-ngrok
+# ngrok
+
+A [Docker][docker] image for [ngrok][ngrok] v2, introspected tunnels to localhost.
+It's based on the excellent work of [wizardapps/ngrok][wizardapps/ngrok] and [fnichol/ngrok][fnichol/ngrok].
+
+
+## Features
+
+  * Small: Built using [busybox][busybox].
+  * Safe: Runs as non-root user with a random UID `6737` (to avoid mapping to an existing UID).
+  * Simple: Just link as `http` or `https` in most cases, see below; exposes ngrok server 4040 port.
+
+
+## Configuration
+
+You simply have to link the Ngrok container to the application under the `app` or `http` or `https` aliases, and all of the configuration will be done for you by default.
+
+Additionally, you can specify one of several environment variable (via `-e`) to configure your Ngrok tunnel:
+
+  * `NGROK_AUTH` - Authentication key for your Ngrok account. This is needed for custom subdomains, custom domains, and HTTP authentication
+  * `NGROK_SUBDOMAIN` - Name of the custom subdomain to use for your tunnel. You must also provide the authentication token
+  * `NGROK_DOMAIN` - Paying Ngrok customers can specify a custom domain. Only one subdomain or domain can be specified, with the domain taking priority.
+  * `NGROK_USERNAME` - Username to use for HTTP authentication on the tunnel. You must also specify an authentication token
+  * `NGROK_PASSWORD` - Password to use for HTTP authentication on the tunnel. You must also specify an authentication token
+  * `NGROK_PROTOCOL` - Can either be “HTTP” or “TCP”, and it defaults to “HTTP” if not specified. If set to “TCP”, Ngrok will allocate a port instead of a subdomain and proxy TCP requests directly to your application.
+
+To see command-line options, run `docker run --rm wernight/ngrok --help`.
+
+
+## Usage example
+
+ 1. We'll set up a simple example HTTP server in a docker container named `www`:
+
+        $ docker run -v /usr/share/nginx/html --name www_data busybox true
+        $ docker run --rm --volumes-from www_data busybox /bin/sh -c 'echo "<h1>Yo</h1>" > /usr/share/nginx/html/index.html'
+        $ docker run -d -p 80 --volumes-from www_data --name www nginx
+        $ curl $(docker port www 80)
+        <h1>Yo</h1>
+
+ 2. Now we'll link that HTTP server into an ngrok container to expose it on the internet:
+
+        $ docker run -d -p 4040 --link www:http --name www_ngrok wernight/ngrok
+
+ 3. You can now access the [API][ngrok-api] to find the assigned domain:
+
+        $ curl $(docker port www_ngrok 4040)/api/tunnels
+
+    or access the web UI to see requests and responses:
+
+        $ xdg-open http://$(docker port www_ngrok 4040)
+
+
+## Feedbacks
+
+Report issues/questions/feature requests on [GitHub Issues][issues]
+
+Pull requests are very welcome!
+
+[issues]:           https://github.com/wernight/docker-ngrok/issues
+[docker]:           https://www.docker.io/
+[ngrok]:            https://ngrok.com/
+[ngrok-api]:        https://ngrok.com/docs#client-api
+[busybox]:          https://registry.hub.docker.com/_/busybox
+[wizardapps/ngrok]: https://registry.hub.docker.com/u/wizardapps/ngrok/
+[fnichol/ngrok]:    https://registry.hub.docker.com/u/fnichol/ngrok/
