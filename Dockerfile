@@ -21,4 +21,4 @@ USER ngrok
 
 EXPOSE 4040
 
-ENTRYPOINT '/bin/ngrok_discover'
+CMD ["/bin/ngrok_discover"]
