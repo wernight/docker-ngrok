@@ -9,8 +9,8 @@ It's based on the excellent work of [wizardapps/ngrok][wizardapps/ngrok] and [fn
 ## Features
 
   * **Small**: Built using [busybox][busybox].
-  * **Safe**: Runs as non-root user with a random UID `6737` (to avoid mapping to an existing UID).
   * **Simple**: Just link as `http` or `https` in most cases, see below; exposes ngrok server `4040` port.
+  * **Secure**: Runs as non-root user with a random UID `6737` (to avoid mapping to an existing UID).
 
 
 ## Configuration
@@ -29,7 +29,11 @@ Additionally, you can specify one of several environment variable (via `-e`) to 
 To see command-line options, run `docker run --rm wernight/ngrok --help`.
 
 
-## Usage example
+## Usage
+
+    $ docker run --rm -it --link web_service_container:http wernight/ngrok ngrok http 80
+
+## Full example
 
  1. We'll set up a simple example HTTP server in a docker container named `www`:
 
