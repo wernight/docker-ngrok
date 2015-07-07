@@ -31,7 +31,7 @@ To see command-line options, run `docker run --rm wernight/ngrok --help`.
 
 ## Usage
 
-    $ docker run --rm -it --link web_service_container:http wernight/ngrok ngrok http 80
+    $ docker run --rm -it --link web_service_container wernight/ngrok ngrok http web_service_container:80
 
 ## Full example
 
