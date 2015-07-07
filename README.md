@@ -31,6 +31,8 @@ To see command-line options, run `docker run --rm wernight/ngrok --help`.
 
 ## Usage
 
+Supposing you've an Apache or Nginx Docker container named `web_service_container` listening on port 80:
+
     $ docker run --rm -it --link web_service_container wernight/ngrok ngrok http web_service_container:80
 
 ## Full example
