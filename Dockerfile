@@ -8,7 +8,7 @@ RUN unzip -o ngrok.zip -d /bin && \
 
 # Add config script
 ADD ngrok.yml /home/ngrok/.ngrok2/
-ADD ngrok_discover /bin/ngrok_discover
+ADD entrypoint.sh /
 
 # Create non-root user
 RUN echo 'ngrok:x:6737:6737:Ngrok user:/home/ngrok:/bin/false' >> /etc/passwd
@@ -21,4 +21,4 @@ USER ngrok
 
 EXPOSE 4040
 
-CMD ["/bin/ngrok_discover"]
+CMD ["/entrypoint.sh"]
