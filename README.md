@@ -35,7 +35,7 @@ Supposing you've an Apache or Nginx Docker container named `web_service_containe
 
     $ docker run --rm -it --link web_service_container wernight/ngrok ngrok http web_service_container:80
 
-## Full example
+### Full example
 
  1. We'll set up a simple example HTTP server in a docker container named `www`:
 
@@ -56,6 +56,18 @@ Supposing you've an Apache or Nginx Docker container named `web_service_containe
     or access the web UI to see requests and responses:
 
         $ xdg-open http://$(docker port www_ngrok 4040)
+
+### Helper
+
+For common cases you may want to create an alias in your `~/.profile` (or `~/.bashrc`, `~/.zshrc`, or equivalent):
+
+    function docker-ngrok() {
+      docker run --rm -it --link "$1":http wernight/ngrok ngrok http http:80
+    }
+    # For ZSH with Oh-My-Zsh! and 'docker' plugin enabled, you can also enable auto-completion:
+    #compdef __docker_containers docker-ngrok
+
+Then to the simple example just do `docker-ngrok web_service_container`.
 
 
 ## Feedbacks
