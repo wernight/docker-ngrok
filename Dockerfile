@@ -21,4 +21,5 @@ USER ngrok
 
 EXPOSE 4040
 
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/bin/ngrok"]

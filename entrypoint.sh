@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 if [ "$1" = "/bin/sh" ]; then
   shift
@@ -55,4 +55,4 @@ case "$1" in
   *)        ARGS="$PROTOCOL $ARGS -log stdout $* $FWD" ;;
 esac
 
-exec /bin/ngrok $ARGS
+exec "$@"
