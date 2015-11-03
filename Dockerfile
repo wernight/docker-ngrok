@@ -1,10 +1,12 @@
+# Note: The newer busybox:glibc is missing libpthread.so.0.
 FROM busybox:ubuntu-14.04
 MAINTAINER Werner Beroux <werner@beroux.com>
 
 # Install ngrok
 ADD https://dl.ngrok.com/ngrok_2.0.19_linux_amd64.zip /ngrok.zip
-RUN unzip -o ngrok.zip -d /bin && \
-    rm -f ngrok.zip
+RUN set -x \
+ && unzip -o ngrok.zip -d /bin \
+ && rm -f /ngrok.zip
 
 # Add config script
 COPY ngrok.yml /home/ngrok/.ngrok2/
