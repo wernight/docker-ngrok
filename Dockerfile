@@ -4,11 +4,11 @@ MAINTAINER Werner Beroux <werner@beroux.com>
 # Install ngrok
 ADD https://dl.ngrok.com/ngrok_2.0.19_linux_amd64.zip /ngrok.zip
 RUN unzip -o ngrok.zip -d /bin && \
-  false || rm -f ngrok.zip
+    rm -f ngrok.zip
 
 # Add config script
-ADD ngrok.yml /home/ngrok/.ngrok2/
-ADD entrypoint.sh /
+COPY ngrok.yml /home/ngrok/.ngrok2/
+COPY entrypoint.sh /
 
 # Create non-root user
 RUN echo 'ngrok:x:6737:6737:Ngrok user:/home/ngrok:/bin/false' >> /etc/passwd
