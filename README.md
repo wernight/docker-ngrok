@@ -1,4 +1,5 @@
-# ngrok
+Containerized ngrok
+===================
 
 [![](https://badge.imagelayers.io/wernight/ngrok.svg)](https://imagelayers.io/?images=wernight/ngrok:latest 'Get your own badge on imagelayers.io')
 
@@ -6,14 +7,14 @@ A [Docker][docker] image for [ngrok][ngrok] v2, introspected tunnels to localhos
 It's based on the excellent work of [wizardapps/ngrok][wizardapps/ngrok] and [fnichol/ngrok][fnichol/ngrok].
 
 
-## Features
+### Features
 
   * **Small**: Built using [busybox][busybox].
   * **Simple**: Just link as `http` or `https` in most cases, see below; exposes ngrok server `4040` port.
   * **Secure**: Runs as non-root user with a random UID `6737` (to avoid mapping to an existing UID).
 
 
-## Configuration
+### Configuration
 
 You simply have to link the Ngrok container to the application under the `app` or `http` or `https` aliases, and all of the configuration will be done for you by default.
 
@@ -29,13 +30,13 @@ Additionally, you can specify one of several environment variable (via `-e`) to 
 To see command-line options, run `docker run --rm wernight/ngrok --help`.
 
 
-## Usage
+### Usage
 
 Supposing you've an Apache or Nginx Docker container named `web_service_container` listening on port 80:
 
     $ docker run --rm -it --link web_service_container wernight/ngrok ngrok http web_service_container:80
 
-### Full example
+#### Full example
 
  1. We'll set up a simple example HTTP server in a docker container named `www`:
 
@@ -57,7 +58,7 @@ Supposing you've an Apache or Nginx Docker container named `web_service_containe
 
         $ xdg-open http://$(docker port www_ngrok 4040)
 
-### Helper
+#### Helper
 
 For common cases you may want to create an alias in your `~/.profile` (or `~/.bashrc`, `~/.zshrc`, or equivalent):
 
@@ -70,7 +71,7 @@ For common cases you may want to create an alias in your `~/.profile` (or `~/.ba
 Then to the simple example just do `docker-ngrok web_service_container`.
 
 
-## Feedbacks
+### Feedbacks
 
 Report issues/questions/feature requests on [GitHub Issues][issues].
 
