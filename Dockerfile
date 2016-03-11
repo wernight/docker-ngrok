@@ -13,11 +13,12 @@ COPY ngrok.yml /home/ngrok/.ngrok2/
 COPY entrypoint.sh /
 
 # Create non-root user.
-RUN echo 'ngrok:x:6737:6737:Ngrok user:/home/ngrok:/bin/false' >> /etc/passwd
-RUN echo 'ngrok:x:6737:' >> /etc/group
-RUN chown ngrok:ngrok /home/ngrok
-RUN chmod -R go=u,go-w /home/ngrok
-RUN chmod go= /home/ngrok
+RUN set -x \
+ && echo 'ngrok:x:6737:6737:Ngrok user:/home/ngrok:/bin/false' >> /etc/passwd \
+ && echo 'ngrok:x:6737:' >> /etc/group \
+ && chown ngrok:ngrok /home/ngrok \
+ && chmod -R go=u,go-w /home/ngrok \
+ && chmod go= /home/ngrok
 
 USER ngrok
 
