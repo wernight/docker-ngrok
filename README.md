@@ -1,8 +1,3 @@
-Containerized ngrok
-===================
-
-[![](https://badge.imagelayers.io/wernight/ngrok.svg)](https://imagelayers.io/?images=wernight/ngrok:latest 'Get your own badge on imagelayers.io')
-
 A [Docker][docker] image for [ngrok][ngrok] v2, introspected tunnels to localhost.
 It's based on the excellent work of [wizardapps/ngrok][wizardapps/ngrok] and [fnichol/ngrok][fnichol/ngrok].
 
