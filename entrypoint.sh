@@ -1,21 +1,22 @@
-#!/bin/sh
+#!/bin/sh -e
 
-if [ "$1" = "/bin/sh" ]; then
-  shift
+if [ -n "$@" ]; then
+  exec "$@"
 fi
 
-if [ -n "$HTTPS_PORT" ]; then
-  FWD="`echo $HTTPS_PORT | sed 's|^tcp://||'`"
-elif [ -n "$HTTP_PORT" ]; then
-  FWD="`echo $HTTP_PORT | sed 's|^tcp://||'`"
-elif [ -n "$APP_PORT" ]; then
-  FWD="`echo $APP_PORT | sed 's|^tcp://||'`"
+
+ARGS="ngrok"
+
+# Set the protocol.
+if [ "$NGROK_PROTOCOL" = "TCP" ]; then
+  ARGS="$ARGS tcp"
+else
+  ARGS="$ARGS http"
 fi
 
-ARGS=""
-
+# Set the authorization token.
 if [ -n "$NGROK_AUTH" ]; then
-  ARGS="-authtoken=$NGROK_AUTH "
+  ARGS="$ARGS -authtoken=$NGROK_AUTH "
 fi
 
 # Set the subdomain or hostname, depending on which is set
@@ -34,25 +35,26 @@ if [ -n "$NGROK_HEADER" ]; then
   ARGS="$ARGS -host-header=$NGROK_HEADER "
 fi
 
-PROTOCOL="http"
-
-if [ "$NGROK_PROTOCOL" == "TCP" ]; then
-  PROTOCOL="tcp "
-fi
-
 if [ -n "$NGROK_USERNAME" ] && [ -n "$NGROK_PASSWORD" ] && [ -n "$NGROK_AUTH" ]; then
   ARGS="$ARGS -auth=\"$NGROK_USERNAME:$NGROK_PASSWORD\" "
 elif [ -n "$NGROK_USERNAME" ] || [ -n "$NGROK_PASSWORD" ]; then
   if [ -z "$NGROK_AUTH" ]; then
-        echo "You must specify a username, password, and Ngrok authentication token to use the custom HTTP authentication."
+    echo "You must specify a username, password, and Ngrok authentication token to use the custom HTTP authentication."
     echo "Sign up for an authentication token at https://ngrok.com"
     exit 1
   fi
 fi
 
-case "$1" in
-  -h|help)  ARGS=$1 ;;
-  *)        ARGS="$PROTOCOL $ARGS -log stdout $* $FWD" ;;
-esac
+ARGS="$ARGS -log stdout"
 
-exec /bin/ngrok $ARGS
+# Set the point.
+if [ -n "$HTTPS_PORT" ]; then
+  ARGS="$ARGS `echo $HTTPS_PORT | sed 's|^tcp://||'`"
+elif [ -n "$HTTP_PORT" ]; then
+  ARGS="$ARGS `echo $HTTP_PORT | sed 's|^tcp://||'`"
+elif [ -n "$APP_PORT" ]; then
+  ARGS="$ARGS `echo $APP_PORT | sed 's|^tcp://||'`"
+fi
+
+set -x
+exec $ARGS
