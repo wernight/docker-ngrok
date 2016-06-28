@@ -26,7 +26,7 @@ elif [ -n "$NGROK_SUBDOMAIN" ] && [ -n "$NGROK_AUTH" ]; then
   ARGS="$ARGS -subdomain=$NGROK_SUBDOMAIN "
 elif [ -n "$NGROK_HOSTNAME" ] || [ -n "$NGROK_SUBDOMAIN" ]; then
   if [ -z "$NGROK_AUTH" ]; then
-        echo "You must specify an authentication token after registering at https://ngrok.com to use custom domains."
+    echo "You must specify an authentication token after registering at https://ngrok.com to use custom domains."
     exit 1
   fi
 fi
