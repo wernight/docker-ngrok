@@ -4,6 +4,17 @@ if [ -n "$@" ]; then
   exec "$@"
 fi
 
+# Legacy compatible:
+if [ -z "$NGROK_PORT" ]; then
+  if [ -n "$HTTPS_PORT" ]; then
+    NGROK_PORT="$HTTPS_PORT"
+  elif [ -n "$HTTPS_PORT" ]; then
+    NGROK_PORT="$HTTP_PORT"
+  elif [ -n "$APP_PORT" ]; then
+    NGROK_PORT="$APP_PORT"
+  fi
+fi
+
 
 ARGS="ngrok"
 
@@ -12,6 +23,7 @@ if [ "$NGROK_PROTOCOL" = "TCP" ]; then
   ARGS="$ARGS tcp"
 else
   ARGS="$ARGS http"
+  NGROK_PORT="${NGROK_PORT:-80}"
 fi
 
 # Set the authorization token.
@@ -47,14 +59,12 @@ fi
 
 ARGS="$ARGS -log stdout"
 
-# Set the point.
-if [ -n "$HTTPS_PORT" ]; then
-  ARGS="$ARGS `echo $HTTPS_PORT | sed 's|^tcp://||'`"
-elif [ -n "$HTTP_PORT" ]; then
-  ARGS="$ARGS `echo $HTTP_PORT | sed 's|^tcp://||'`"
-elif [ -n "$APP_PORT" ]; then
-  ARGS="$ARGS `echo $APP_PORT | sed 's|^tcp://||'`"
+# Set the port.
+if [ -z "$NGROK_PORT" ]; then
+  echo "You must specify a NGROK_PORT to expose."
+  exit 1
 fi
+ARGS="$ARGS `echo $NGROK_PORT | sed 's|^tcp://||'`"
 
 set -x
 exec $ARGS
