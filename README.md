@@ -23,6 +23,23 @@ Supposing you've an Apache or Nginx Docker container named `web_service_containe
     $ docker run --rm -it --link web_service_container wernight/ngrok ngrok http web_service_container:80
 
 
+### Environment variables
+
+*Please consider using directly the command-line arguments of Ngrok.*
+
+You simply have to link the Ngrok container to the application under the `app` or `http` or `https` aliases, and all of the configuration will be done for you by default.
+
+Additionally, you can specify one of several environment variable (via `-e`) to configure your Ngrok tunnel:
+
+  * `NGROK_AUTH` - Authentication key for your Ngrok account. This is needed for custom subdomains, custom domains, and HTTP authentication.
+  * `NGROK_SUBDOMAIN` - Name of the custom subdomain to use for your tunnel. You must also provide the authentication token.
+  * `NGROK_DOMAIN` - Paying Ngrok customers can specify a custom domain. Only one subdomain or domain can be specified, with the domain taking priority.
+  * `NGROK_USERNAME` - Username to use for HTTP authentication on the tunnel. You must also specify an authentication token.
+  * `NGROK_PASSWORD` - Password to use for HTTP authentication on the tunnel. You must also specify an authentication token.
+  * `NGROK_PROTOCOL` - Can either be `HTTP` or `TCP`, and it defaults to `HTTP` if not specified. If set to `TCP`, Ngrok will allocate a port instead of a subdomain and proxy TCP requests directly to your application.
+  * `NGROK_PORT` - Port to expose (defaults to `80` for `HTTP` protocol).
+  * 
+
 #### Full example
 
  1. We'll set up a simple example HTTP server in a docker container named `www`:
@@ -58,23 +75,6 @@ For common cases you may want to create an alias in your `~/.profile` (or `~/.ba
 
 Then to the simple example just do `docker-ngrok web_service_container`.
 
-
-## Deprecated environment variables
-
-*Please consider using directly the command-line arguments of Ngrok and if you feel that envrionment variables as below
-are really useful to you, add a ticket.*
-
-You simply have to link the Ngrok container to the application under the `app` or `http` or `https` aliases, and all of the configuration will be done for you by default.
-
-Additionally, you can specify one of several environment variable (via `-e`) to configure your Ngrok tunnel:
-
-  * `NGROK_AUTH` - Authentication key for your Ngrok account. This is needed for custom subdomains, custom domains, and HTTP authentication.
-  * `NGROK_SUBDOMAIN` - Name of the custom subdomain to use for your tunnel. You must also provide the authentication token.
-  * `NGROK_DOMAIN` - Paying Ngrok customers can specify a custom domain. Only one subdomain or domain can be specified, with the domain taking priority.
-  * `NGROK_USERNAME` - Username to use for HTTP authentication on the tunnel. You must also specify an authentication token.
-  * `NGROK_PASSWORD` - Password to use for HTTP authentication on the tunnel. You must also specify an authentication token.
-  * `NGROK_PROTOCOL` - Can either be `HTTP` or `TCP`, and it defaults to `HTTP` if not specified. If set to `TCP`, Ngrok will allocate a port instead of a subdomain and proxy TCP requests directly to your application.
-  * `NGROK_PORT` - Port to expose (defaults to `80` for `HTTP` protocol).
 
 
 ## Feedbacks
