@@ -27,6 +27,9 @@ Supposing you've an Apache or Nginx Docker container named `web_service_containe
 
 *Please consider using directly the command-line arguments of Ngrok.*
 
+If you use the default `CMD` (i.e. don't specify the ngrok command-line but only `wernight/ngrok`),
+then you can use instead envrionment variables magic below.
+
 You simply have to link the Ngrok container to the application under the `app` or `http` or `https` aliases, and all of the configuration will be done for you by default.
 
 Additionally, you can specify one of several environment variable (via `-e`) to configure your Ngrok tunnel:
