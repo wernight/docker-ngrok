@@ -43,6 +43,11 @@ elif [ -n "$NGROK_HOSTNAME" ] || [ -n "$NGROK_SUBDOMAIN" ]; then
   fi
 fi
 
+# Set a custom region
+if [ -n "$NGROK_REGION" ]; then
+  ARGS="$ARGS -region=$NGROK_REGION "
+fi
+
 if [ -n "$NGROK_HEADER" ]; then
   ARGS="$ARGS -host-header=$NGROK_HEADER "
 fi
