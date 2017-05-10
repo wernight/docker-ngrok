@@ -13,7 +13,7 @@ It's based on the excellent work of [wizardapps/ngrok][wizardapps/ngrok] and [fn
 
 ## Configuration
 
-To see command-line options, run `docker run --rm wernight/ngrok --help`.
+To see command-line options, run `docker run --rm wernight/ngrok ngrok --help`.
 
 
 ## Usage
