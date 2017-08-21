@@ -16,7 +16,7 @@ COPY entrypoint.sh /
 RUN set -x \
  && echo 'ngrok:x:6737:6737:Ngrok user:/home/ngrok:/bin/false' >> /etc/passwd \
  && echo 'ngrok:x:6737:' >> /etc/group \
- && chown ngrok:ngrok /home/ngrok \
+ && chown -R ngrok:ngrok /home/ngrok \
  && chmod -R go=u,go-w /home/ngrok \
  && chmod go= /home/ngrok
 
