@@ -62,7 +62,9 @@ elif [ -n "$NGROK_USERNAME" ] || [ -n "$NGROK_PASSWORD" ]; then
   fi
 fi
 
-ARGS="$ARGS -log stdout"
+if [ -n "$NGROK_DEBUG" ]; then
+    ARGS="$ARGS -log stdout"
+fi
 
 # Set the port.
 if [ -z "$NGROK_PORT" ]; then
