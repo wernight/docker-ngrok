@@ -62,7 +62,7 @@ elif [ -n "$NGROK_USERNAME" ] || [ -n "$NGROK_PASSWORD" ]; then
   fi
 fi
 
-if [ ! -z "$NGROK_DEBUG" ]; then
+if [ -n "$NGROK_DEBUG" ]; then
     ARGS="$ARGS -log stdout"
 fi
 
