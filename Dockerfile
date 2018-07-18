@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.8
 MAINTAINER Werner Beroux <werner@beroux.com>
 
 RUN set -x \
