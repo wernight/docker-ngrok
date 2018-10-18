@@ -81,8 +81,15 @@ For common cases you may want to create an alias in your `~/.profile` (or `~/.ba
     # For ZSH with Oh-My-Zsh! and 'docker' plugin enabled, you can also enable auto-completion:
     #compdef __docker_containers docker-ngrok
 
-Then to the simple example just do `docker-ngrok web_service_container`.
+Then to run the simple example just do `docker-ngrok web_service_container`.
 
+For non dockerized http targets consider this helper function:
+
+    function expose-ngrok() {
+      docker run --rm --net=host -e NGROK_PORT="$1" wernight/ngrok
+    }
+
+and then visit [localhost:4040](http://localhost:4040) for receiving the links.
 
 
 ## Feedbacks
