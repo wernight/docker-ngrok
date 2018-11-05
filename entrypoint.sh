@@ -92,5 +92,4 @@ else
   ARGS="$ARGS `echo $NGROK_PORT | sed 's|^tcp://||'`"
 fi
 
-set -x
 exec $ARGS
