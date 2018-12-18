@@ -26,6 +26,11 @@ else
   NGROK_PORT="${NGROK_PORT:-80}"
 fi
 
+# Set the TLS binding flag
+if [ -n "$NGROK_BINDTLS" ]; then
+  ARGS="$ARGS -bind-tls=$NGROK_BINDTLS "
+fi
+
 # Set the authorization token.
 if [ -n "$NGROK_AUTH" ]; then
   ARGS="$ARGS -authtoken=$NGROK_AUTH "
