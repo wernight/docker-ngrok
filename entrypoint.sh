@@ -44,13 +44,12 @@ elif [ -n "$NGROK_HOSTNAME" ] || [ -n "$NGROK_SUBDOMAIN" ]; then
 fi
 
 # Set the remote-addr if specified
-if [ -n "$NGROK_REMOTE_ADDR" ] && [ -n "$NGROK_AUTH" ]; then
-  ARGS="$ARGS -remote-addr=$NGROK_REMOTE_ADDR "
-elif [ -n "$NGROK_REMOTE_ADDR" ]; then
+if [ -n "$NGROK_REMOTE_ADDR" ]; then
   if [ -z "$NGROK_AUTH" ]; then
     echo "You must specify an authentication token after registering at https://ngrok.com to use reserved ip addresses."
     exit 1
   fi
+  ARGS="$ARGS -remote-addr=$NGROK_REMOTE_ADDR "
 fi
 
 # Set a custom region
