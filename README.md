@@ -46,7 +46,7 @@ Additionally, you can specify one of several environment variable (via `-e`) to 
   * `NGROK_USERNAME` - Username to use for HTTP authentication on the tunnel. You must also specify an authentication token.
   * `NGROK_PASSWORD` - Password to use for HTTP authentication on the tunnel. You must also specify an authentication token.
   * `NGROK_PROTOCOL` - Can either be `HTTP` or `TCP`, and it defaults to `HTTP` if not specified. If set to `TCP`, Ngrok will allocate a port instead of a subdomain and proxy TCP requests directly to your application.
-  * `NGROK_PORT` - Port to expose (defaults to `80` for `HTTP` protocol).
+  * `NGROK_PORT` - Port to expose (defaults to `80` for `HTTP` protocol). If the server is non-local, the hostname can also be specified, e.g. `192.168.0.102:80`.
   * `NGROK_REGION` - Location of the ngrok tunnel server; can be `us` (United States, default), `eu` (Europe), `ap` (Asia/Pacific) or `au` (Australia)
   * `NGROK_BINDTLS` - Toggle tunneling only HTTP or HTTPS traffic. When `true`, Ngrok only opens the HTTPS endpoint. When `false`, Ngrok only opens the HTTP endpoint
 
