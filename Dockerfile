@@ -11,7 +11,7 @@ RUN set -x \
  && adduser -h /home/ngrok -D -u 6737 ngrok
 
 # Add config script.
-COPY ngrok.yml /home/ngrok/.ngrok2/
+COPY --chown=ngrok ngrok.yml /home/ngrok/.ngrok2/
 COPY entrypoint.sh /
 
 USER ngrok
