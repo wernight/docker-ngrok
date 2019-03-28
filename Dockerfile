@@ -1,4 +1,5 @@
 FROM alpine:3.9
+
 LABEL Werner Beroux <werner@beroux.com>
 
 RUN set -x && \
@@ -32,4 +33,3 @@ ENV USER=ngrok
 EXPOSE 4040
 
 CMD ["/entrypoint.sh"]
-

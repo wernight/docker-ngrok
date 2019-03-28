@@ -26,9 +26,14 @@ else
   NGROK_PORT="${NGROK_PORT:-80}"
 fi
 
+# Set the TLS binding flag
+if [ -n "$NGROK_BINDTLS" ]; then
+  ARGS="$ARGS -bind-tls=$NGROK_BINDTLS "
+fi
+
 # Set the authorization token.
 if [ -n "$NGROK_AUTH" ]; then
-  ARGS="$ARGS -authtoken=$NGROK_AUTH "
+  echo "authtoken: $NGROK_AUTH" >> ~/.ngrok2/ngrok.yml
 fi
 
 # Set the subdomain or hostname, depending on which is set
@@ -41,6 +46,15 @@ elif [ -n "$NGROK_HOSTNAME" ] || [ -n "$NGROK_SUBDOMAIN" ]; then
     echo "You must specify an authentication token after registering at https://ngrok.com to use custom domains."
     exit 1
   fi
+fi
+
+# Set the remote-addr if specified
+if [ -n "$NGROK_REMOTE_ADDR" ]; then
+  if [ -z "$NGROK_AUTH" ]; then
+    echo "You must specify an authentication token after registering at https://ngrok.com to use reserved ip addresses."
+    exit 1
+  fi
+  ARGS="$ARGS -remote-addr=$NGROK_REMOTE_ADDR "
 fi
 
 # Set a custom region
