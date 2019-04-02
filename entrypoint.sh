@@ -85,7 +85,12 @@ if [ -z "$NGROK_PORT" ]; then
   echo "You must specify a NGROK_PORT to expose."
   exit 1
 fi
-ARGS="$ARGS `echo $NGROK_PORT | sed 's|^tcp://||'`"
+
+if [ -n "$NGROK_LOOK_DOMAIN" ]; then
+  ARGS="$ARGS `echo $NGROK_LOOK_DOMAIN:$NGROK_PORT | sed 's|^tcp://||'`"
+else
+  ARGS="$ARGS `echo $NGROK_PORT | sed 's|^tcp://||'`"
+fi
 
 set -x
 exec $ARGS
