@@ -15,7 +15,14 @@ RUN set -x && \
 RUN set -x \
     # Install ngrok (latest official stable from https://ngrok.com/download).
  && apk add --no-cache curl \
- && curl -Lo /ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip \
+ && APKARCH="$(apk --print-arch)" \
+ && case "$APKARCH" in \
+      armhf)  NGROKARCH="arm" ;; \ 
+      armv7)  NGROKARCH="arm" ;; \
+      x86)    NGROKARCH="386" ;; \
+      x86_64) NGROKARCH="amd64" ;; \
+    esac \
+ && curl -Lo /ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-$NGROKARCH.zip \
  && unzip -o /ngrok.zip -d /bin \
  && rm -f /ngrok.zip \
     # Create non-root user.
