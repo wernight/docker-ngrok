@@ -19,10 +19,11 @@ RUN set -x \
  && apk add --no-cache curl \
  && APKARCH="$(apk --print-arch)" \
  && case "$APKARCH" in \
-      armhf)  NGROKARCH="arm" ;; \ 
-      armv7)  NGROKARCH="arm" ;; \
-      x86)    NGROKARCH="386" ;; \
-      x86_64) NGROKARCH="amd64" ;; \
+      armhf)   NGROKARCH="arm" ;; \ 
+      armv7)   NGROKARCH="arm" ;; \
+      armel)   NGROKARCH="arm" ;; \
+      x86)     NGROKARCH="386" ;; \
+      x86_64)  NGROKARCH="amd64" ;; \
     esac \
  && curl -Lo /ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-$NGROKARCH.zip \
  && unzip -o /ngrok.zip -d /bin \
