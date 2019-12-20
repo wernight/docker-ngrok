@@ -18,6 +18,10 @@ fi
 
 ARGS="ngrok"
 
+if [ -n "$NGROK_TIMEOUT" ]; then
+  ARGS="timeout $NGROK_TIMEOUT $ARGS"
+fi
+
 # Set the protocol.
 if [ "$NGROK_PROTOCOL" = "TCP" ]; then
   ARGS="$ARGS tcp"
