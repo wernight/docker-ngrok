@@ -1,6 +1,7 @@
 FROM alpine:3.9
 MAINTAINER Werner Beroux <werner@beroux.com>
 
+RUN apk add --update coreutils && rm -rf /var/cache/apk/*
 RUN set -x && \
     apk add --no-cache -t .deps ca-certificates && \
     # Install glibc on Alpine (required by docker-compose) from
