@@ -50,6 +50,8 @@ Additionally, you can specify one of several environment variable (via `-e`) to 
   * `NGROK_REGION` - Location of the ngrok tunnel server; can be `us` (United States, default), `eu` (Europe), `ap` (Asia/Pacific) or `au` (Australia)
   * `NGROK_LOOK_DOMAIN` - This is the domain name referred to by ngrok. (default: localhost).
   * `NGROK_BINDTLS` - Toggle tunneling only HTTP or HTTPS traffic. When `true`, Ngrok only opens the HTTPS endpoint. When `false`, Ngrok only opens the HTTP endpoint
+  * `NGROK_HEADER` - Rewrites the Host header for incoming HTTP requests to determine which development site to display.
+  * `NGROK_DEBUG` - Toggle output of logs. When `true`, Ngrok will output logs to stdout.
 
 #### Full example
 
