@@ -22,7 +22,6 @@ RUN set -x \
  && rm -f /ngrok.zip \
     # Create non-root user.
  && adduser -h /home/ngrok -D -u 6737 ngrok
-RUN  ngrok --version
 
 # Add config script.
 COPY --chown=ngrok ngrok.yml /home/ngrok/.ngrok2/
@@ -30,6 +29,9 @@ COPY entrypoint.sh /
 
 USER ngrok
 ENV USER=ngrok
+
+# Basic sanity check.
+RUN ngrok --version
 
 EXPOSE 4040
 
