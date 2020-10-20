@@ -1,4 +1,4 @@
-[![Docker repository](https://img.shields.io/docker/automated/wernight/ngrok.svg)](https://hub.docker.com/r/wernight/ngrok/) [![Build passing](https://img.shields.io/docker/build/wernight/ngrok.svg)](https://hub.docker.com/r/wernight/ngrok/) [![Codenvy badge](http://beta.codenvy.com/factory/resources/codenvy-contribute.svg)](http://beta.codenvy.com/f?url=https://github.com/wernight/docker-ngrok 'Start development on Codenvy')
+[![Docker repository](https://img.shields.io/docker/automated/wernight/ngrok.svg)](https://hub.docker.com/r/wernight/ngrok/) [![Build passing](https://img.shields.io/docker/build/wernight/ngrok.svg)](https://hub.docker.com/r/wernight/ngrok/)
 
 # Supported tags and respective `Dockerfile` links
 
@@ -6,12 +6,12 @@
   * [`armhf`](https://github.com/wernight/docker-ngrok/blob/master/Dockerfile.armhf)
 
 A [Docker][docker] image for [ngrok][ngrok] v2, introspected tunnels to localhost.
-It's based on the excellent work of [wizardapps/ngrok][wizardapps/ngrok] and [fnichol/ngrok][fnichol/ngrok].
+It's based on the excellent work of [wizardapps/ngrok][wizardapps/ngrok].
 
 
 ## Features
 
-  * **Small**: Built using [busybox][busybox].
+  * **Small**: Built using [Alpine][alpine].
   * **Simple**: Just link as `http` or `https` in most cases, see below; exposes ngrok server `4040` port.
   * **Secure**: Runs as non-root user with a random UID `6737` (to avoid mapping to an existing UID).
 
@@ -107,6 +107,6 @@ Pull requests are very welcome!
 [docker]:           https://www.docker.io/
 [ngrok]:            https://ngrok.com/
 [ngrok-api]:        https://ngrok.com/docs#client-api
-[busybox]:          https://registry.hub.docker.com/_/busybox
-[wizardapps/ngrok]: https://registry.hub.docker.com/u/wizardapps/ngrok/
-[fnichol/ngrok]:    https://registry.hub.docker.com/u/fnichol/ngrok/
+[alpine]:           https://hub.docker.com/_/alpine
+[wizardapps/ngrok]: https://hub.docker.com/r/wizardapps/ngrok
+[fnichol/ngrok]:    https://hub.docker.com/r/fnichol/ngrok
