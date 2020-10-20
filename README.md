@@ -6,7 +6,7 @@
   * [`armhf`](https://github.com/wernight/docker-ngrok/blob/master/Dockerfile.armhf)
 
 A [Docker][docker] image for [ngrok][ngrok] v2, introspected tunnels to localhost.
-It's based on the excellent work of [wizardapps/ngrok][wizardapps/ngrok] and [fnichol/ngrok][fnichol/ngrok]..
+It's based on the excellent work of [wizardapps/ngrok][wizardapps/ngrok] and [fnichol/ngrok][fnichol/ngrok].
 
 
 ## Features
