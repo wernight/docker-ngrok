@@ -43,4 +43,4 @@ RUN ngrok --version
 
 EXPOSE 4040
 
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
