@@ -52,6 +52,7 @@ Additionally, you can specify one of several environment variable (via `-e`) to 
   * `NGROK_BINDTLS` - Toggle tunneling only HTTP or HTTPS traffic. When `true`, Ngrok only opens the HTTPS endpoint. When `false`, Ngrok only opens the HTTP endpoint
   * `NGROK_HEADER` - Rewrites the Host header for incoming HTTP requests to determine which development site to display.
   * `NGROK_DEBUG` - Toggle output of logs. When `true`, Ngrok will output logs to stdout.
+  * `NGROK_CONFIG` - Location of ngrok.yml file to configure the tunnels, this allows for multiple tunnels, it will override all other configuration settings
 
 #### Full example
 
