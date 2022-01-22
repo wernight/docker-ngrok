@@ -21,7 +21,7 @@ ARGS="ngrok"
 # Use config file instead
 if [ -n "$NGROK_CONFIG" ]; then
 
-  ARGS="$ARGS start -config ${NGROK_CONFIG} -all"
+  ARGS="$ARGS start --all -config=${NGROK_CONFIG}"
   exec $ARGS
 
 else
