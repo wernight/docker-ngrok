@@ -21,7 +21,7 @@ ARGS="ngrok"
 # Use config file instead
 if [ -n "$NGROK_CONFIG" ]; then
 
-  ARGS="$ARGS -config /home/ngrok/.ngrok2/ngrok.yml -all"
+  ARGS="$ARGS -config ${NGROK_CONFIG} -all"
   exec $ARGS
 
 else
