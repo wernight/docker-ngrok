@@ -39,7 +39,7 @@ You simply have to link the Ngrok container to the application under the `app` o
 
 Additionally, you can specify one of several environment variable (via `-e`) to configure your Ngrok tunnel:
 
-  * `NGROK_AUTH` - Authentication key for your Ngrok account. This is needed for custom subdomains, custom domains, and HTTP authentication.
+  * `NGROK_AUTHTOKEN` - Authentication Token for your Ngrok account. This is needed for custom subdomains, custom domains, and HTTP authentication.
   * `NGROK_SUBDOMAIN` - Name of the custom subdomain to use for your tunnel. You must also provide the authentication token.
   * `NGROK_HOSTNAME` - Paying Ngrok customers can specify a custom domain. Only one subdomain or domain can be specified, with the domain taking priority.
   * `NGROK_REMOTE_ADDR` - Name of the reserved TCP address to use for a TCP tunnel. You must also provide the authentication token.
