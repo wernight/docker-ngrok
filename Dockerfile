@@ -25,9 +25,9 @@ RUN set -x \
       x86)     NGROKARCH="386" ;; \
       x86_64)  NGROKARCH="amd64" ;; \
     esac \
- && curl -Lo /ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-$NGROKARCH.zip \
- && unzip -o /ngrok.zip -d /bin \
- && rm -f /ngrok.zip \
+ && curl -Lo /tmp/ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-$NGROKARCH.tgz \
+ && tar xvzf /tmp/ngrok.tgz -C /bin \
+ && rm -f /ngrok.tgz \
     # Create non-root user.
  && adduser -h /home/ngrok -D -u 6737 ngrok
 
