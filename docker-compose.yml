@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  latest:
+    image: wernight/ngrok:latest
+    build:
+      context: .
+# armhf:
+#   image: wernight/ngrok:armhf
+#   build:
+#     context: .
+#     dockerfile: Dockerfile.armhf

@@ -1,9 +1,9 @@
-[![Docker repository](https://img.shields.io/docker/automated/wernight/ngrok.svg)](https://hub.docker.com/r/wernight/ngrok/) [![Build passing](https://img.shields.io/docker/build/wernight/ngrok.svg)](https://hub.docker.com/r/wernight/ngrok/)
+[Docker Hub](https://hub.docker.com/r/wernight/ngrok/)
 
 # Supported tags and respective `Dockerfile` links
 
-  * [`latest`](https://github.com/wernight/docker-ngrok/blob/master/Dockerfile) [![](https://images.microbadger.com/badges/image/wernight/ngrok.svg)](http://microbadger.com/images/wernight/ngrok "Get your own image badge on microbadger.com")
-  * [`armhf`](https://github.com/wernight/docker-ngrok/blob/master/Dockerfile.armhf)
+  * [`latest`](https://github.com/wernight/docker-ngrok/blob/master/latest/Dockerfile)
+  * [`armhf`](https://github.com/wernight/docker-ngrok/blob/master/armhf/Dockerfile.armhf)
 
 A [Docker][docker] image for [ngrok][ngrok] v2, introspected tunnels to localhost.
 It's based on the excellent work of [wizardapps/ngrok][wizardapps/ngrok] and [fnichol/ngrok][fnichol/ngrok].
